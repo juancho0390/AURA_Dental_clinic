@@ -1,585 +1,851 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA Dental Institute | Odontología de Alta Especialidad</title>
-    <meta name="description" content="En AURA Dental Institute, fusionamos ciencia y arte para catalizar su confianza a través de la odontología digital y regenerativa de alta complejidad.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Estilos personalizados y configuración de Tailwind -->
-    <style>
-        /* Aplicar la directiva de Tailwind */
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-
-        /* Estilos base y tipografía */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFDFD;
-            color: #1a202c; /* Equivalent to text-gray-800 */
-        }
-
-        /* Estilos para la animación de aparición */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    <!DOCTYPE html>
+    <html lang="es" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AURA Dental Institute | Odontología de Alta Especialidad</title>
+        <meta name="description" content="En AURA Dental Institute, fusionamos ciencia y arte para catalizar su confianza a través de la odontología digital y regenerativa de alta complejidad.">
         
-        /* Estilo para el navbar con fondo al hacer scroll */
-        .navbar-scrolled {
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        /* Estilo para el video de fondo del Hero */
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-        }
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
         
-        /* Estilos para el componente de pestañas (Tabs) */
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .tab-button.active {
-            border-color: #3b82f6; /* border-blue-500 */
-            color: #3b82f6; /* text-blue-500 */
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body class="bg-white text-gray-800 antialiased">
-
-    <!-- ===== Barra de Navegación (Navbar) ===== -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="#" class="text-2xl font-bold text-gray-800 tracking-wider">AURA</a>
-                
-                <!-- Enlaces de Navegación (Desktop) -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#filosofia" class="text-gray-600 hover:text-blue-600 transition duration-300">Filosofía</a>
-                    <a href="#experiencia" class="text-gray-600 hover:text-blue-600 transition duration-300">La Experiencia</a>
-                    <a href="#servicios" class="text-gray-600 hover:text-blue-600 transition duration-300">Servicios</a>
-                    <a href="#garantia" class="text-gray-600 hover:text-blue-600 transition duration-300">Garantía de Excelencia</a>
-                </div>
-                
-                <!-- Botón CTA -->
-                <a href="#contacto" class="hidden md:inline-block bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                    Agende su Valoración
-                </a>
-
-                <!-- Menú Móvil (Hamburguesa) -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Menú desplegable móvil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white mt-2">
-            <a href="#filosofia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Filosofía</a>
-            <a href="#experiencia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">La Experiencia</a>
-            <a href="#servicios" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Servicios</a>
-            <a href="#garantia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Garantía de Excelencia</a>
-            <div class="p-4">
-                <a href="#contacto" class="block text-center w-full bg-blue-600 text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-700 transition-all duration-300">
-                    Agende su Valoración
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ===== Sección Hero ===== -->
-    <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-        <video id="hero-video" autoplay loop muted playsinline>
-            <!-- Usamos un video genérico de alta calidad como placeholder -->
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-dental-health-specialist-using-a-probe-and-a-mouth-mirror-4433-large.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="relative z-10 px-4 text-white">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 animate-fade-in-down" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-                La Fusión de Ciencia y Arte para Catalizar su Confianza.
-            </h1>
-            <h2 class="text-lg md:text-2xl max-w-4xl mx-auto mb-8 animate-fade-in-up" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                En AURA Dental Institute, trascendemos la odontología convencional. Diseñamos y mantenemos sonrisas que reflejan su identidad única a través de la ciencia digital y regenerativa de alta complejidad.
-            </h2>
-            <a href="#contacto" class="bg-white text-blue-600 font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-200 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                Agende su Valoración Diagnóstica Integral
-            </a>
-        </div>
-    </section>
-
-    <main>
-        <!-- ===== Sección Filosofía ===== -->
-        <section id="filosofia" class="py-20 lg:py-32 bg-gray-50">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Nuestra Filosofía</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Los pilares que fundamentan nuestro compromiso con su bienestar y la excelencia en cada resultado.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                    <!-- Tarjeta 1: Integridad Científica -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" /></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Integridad Científica</h3>
-                        <p class="text-gray-600">Cada diagnóstico se fundamenta en la más rigurosa evidencia científica para garantizar soluciones seguras, eficaces y duraderas.</p>
-                    </div>
-                    <!-- Tarjeta 2: Excelencia Clínica -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 100ms;">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4M14 3v4m-2-2h4M18 17v4m-2-2h4M9 21h6m-3-3v3m-3-12h6m-3-3v3" /></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Excelencia Clínica</h3>
-                        <p class="text-gray-600">Nuestro sistema de Gobernanza Clínica y Revisión por Pares asegura resultados que consistentemente superan las expectativas.</p>
-                    </div>
-                    <!-- Tarjeta 3: Innovación Constante -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 200ms;">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Innovación Constante</h3>
-                        <p class="text-gray-600">Integramos tecnologías de vanguardia como la imagenología 3D y la IA para mejorar la precisión y su experiencia como paciente.</p>
-                    </div>
-                    <!-- Tarjeta 4: Empatía y Cuidado -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 300ms;">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Empatía y Cuidado</h3>
-                        <p class="text-gray-600">Tratamos a personas, no a casos. Cada plan de tratamiento es co-creado con usted, respetando sus objetivos y singularidad.</p>
-                    </div>
-                    <!-- Tarjeta 5: Transparencia Absoluta -->
-                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 400ms;">
-                        <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Transparencia Absoluta</h3>
-                        <p class="text-gray-600">Fomentamos una comunicación honesta sobre diagnósticos, opciones y costes, empoderándole para tomar las mejores decisiones.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== Sección La Experiencia AURA ===== -->
-        <section id="experiencia" class="py-20 lg:py-32">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center mb-20 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Usted es el Co-diseñador de su Sonrisa</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">La Experiencia AURA es un viaje colaborativo y predecible hacia la sonrisa que siempre ha deseado, donde usted tiene el control en cada paso.</p>
-                </div>
-
-                <div class="relative">
-                    <!-- Línea de tiempo vertical -->
-                    <div class="hidden lg:block absolute h-full border-l-2 border-blue-200 border-dashed" style="left: 50%; transform: translateX(-1px);"></div>
-                    
-                    <!-- Paso 1 -->
-                    <div class="mb-16 lg:mb-24 flex flex-col lg:flex-row items-center fade-in-section">
-                        <div class="lg:w-1/2 lg:pr-12">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
-                            <h3 class="text-2xl font-bold mb-4">La Creación de su Gemelo Digital</h3>
-                            <p class="text-gray-600">Su primera visita es una inmersión diagnóstica integral. Mediante la fusión de fotografía de alta definición, un escáner intraoral 3D y una tomografía computarizada (CBCT), creamos una réplica virtual exacta. Este "Gemelo Digital" es el lienzo sobre el que planificaremos su transformación con precisión milimétrica.</p>
-                        </div>
-                        <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0 flex justify-center">
-                            <img src="https://placehold.co/500x300/E2E8F0/3B82F6?text=Creación+del+Gemelo+Digital" alt="Creación del Gemelo Digital" class="rounded-lg shadow-xl">
-                        </div>
-                    </div>
-
-                    <!-- Paso 2 -->
-                    <div class="mb-16 lg:mb-24 flex flex-col lg:flex-row-reverse items-center fade-in-section">
-                        <div class="lg:w-1/2 lg:pl-12">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
-                            <h3 class="text-2xl font-bold mb-4">Co-diseñando su Futuro</h3>
-                            <p class="text-gray-600">Utilizando su Gemelo Digital, aplicamos el protocolo de Diseño de Sonrisa Digital (DSD). Le presentamos una simulación fotorrealista y, más importante, una maqueta (mock-up) que puede probarse. Podrá ver y sentir su nueva sonrisa en su propio rostro antes de iniciar cualquier tratamiento, asegurando su completa satisfacción.</p>
-                        </div>
-                        <div class="lg:w-1/2 lg:pr-12 mt-8 lg:mt-0 flex justify-center">
-                            <img src="https://placehold.co/500x300/E2E8F0/3B82F6?text=Diseño+de+Sonrisa+Digital" alt="Diseño de Sonrisa Digital" class="rounded-lg shadow-xl">
-                        </div>
-                    </div>
-
-                    <!-- Paso 3 -->
-                    <div class="flex flex-col lg:flex-row items-center fade-in-section">
-                        <div class="lg:w-1/2 lg:pr-12">
-                            <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
-                            <h3 class="text-2xl font-bold mb-4">Ejecución de Precisión y Cuidado Continuo</h3>
-                            <p class="text-gray-600">Una vez aprobado el diseño, ejecutamos el plan bajo los más estrictos protocolos de bioseguridad. Nuestro compromiso no termina ahí; le acompañamos con un seguimiento personalizado para asegurar una recuperación óptima y la longevidad de los resultados.</p>
-                        </div>
-                        <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0 flex justify-center">
-                            <img src="https://placehold.co/500x300/E2E8F0/3B82F6?text=Protocolos+de+Bioseguridad" alt="Protocolos de Bioseguridad" class="rounded-lg shadow-xl">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== Sección Servicios ===== -->
-        <section id="servicios" class="py-20 lg:py-32 bg-gray-50">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Portafolio de Servicios de Alta Especialidad</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Soluciones integrales diseñadas para restaurar, mejorar y mantener su salud oral con la máxima calidad.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <!-- Tarjeta de Servicio (plantilla) -->
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Diagnóstico Avanzado y Odontología Preventiva</h3>
-                            <p class="text-gray-600 mb-4">La base de todo tratamiento exitoso. Utilizamos tecnología 3D para un diagnóstico preciso y programas preventivos para mantener su salud a largo plazo.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6">
-                                <p class="text-gray-700">Detallamos el uso de CBCT (Tomografía Computarizada de Haz Cónico) y Escáner Intraoral 3D, enfatizando la precisión milimétrica, la seguridad (dosis de radiación significativamente menor que los métodos convencionales) y la comodidad para el paciente (eliminando la necesidad de moldes físicos incómodos).</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Odontología Restauradora y Endodoncia de Precisión</h3>
-                            <p class="text-gray-600 mb-4">Restauramos función y estética con materiales biomiméticos y tratamientos de conducto micro-guiados para un éxito duradero.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6">
-                                <p class="text-gray-700">Explicamos las ventajas de las restauraciones de mínima intervención, que preservan la mayor cantidad de tejido dental sano. En endodoncia, el uso de magnificación (microscopios) nos permite tratar conductos con una precisión inigualable, lo que aumenta drásticamente la tasa de éxito y previene reinfecciones.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Diseño de Sonrisa y Estética Dental de Vanguardia</h3>
-                            <p class="text-gray-600 mb-4">Creamos sonrisas armónicas a través del Diseño de Sonrisa Digital (DSD) y carillas de disilicato de litio ultrafinas y resistentes.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6">
-                                <p class="text-gray-700">El proceso DSD actúa como el plano arquitectónico que guía cada paso del tratamiento estético. Las carillas de disilicato de litio ofrecen beneficios superiores en términos de durabilidad, estabilidad de color a largo plazo y requieren una preparación dental mínima, conservando la estructura de sus dientes.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Ortodoncia Digital e Invisible</h3>
-                            <p class="text-gray-600 mb-4">Alinee su sonrisa con precisión y discreción. Ofrecemos desde alineadores invisibles hasta los brackets de autoligado más eficientes.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6">
-                                <h4 class="font-bold mb-4">Comparativa de Sistemas de Ortodoncia Avanzada</h4>
-                                <div class="overflow-x-auto">
-                                    <table class="w-full text-sm text-left text-gray-500">
-                                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3">Característica</th>
-                                                <th scope="col" class="px-6 py-3">Alineadores Invisibles</th>
-                                                <th scope="col" class="px-6 py-3">Brackets de Autoligado</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="bg-white border-b">
-                                                <td class="px-6 py-4 font-medium">Estética</td>
-                                                <td class="px-6 py-4">Prácticamente invisibles. Máxima discreción.</td>
-                                                <td class="px-6 py-4">Visibles (versiones cerámicas disponibles).</td>
-                                            </tr>
-                                            <tr class="bg-gray-50 border-b">
-                                                <td class="px-6 py-4 font-medium">Comodidad</td>
-                                                <td class="px-6 py-4">Bordes suaves, removibles, sin irritación.</td>
-                                                <td class="px-6 py-4">Pueden causar molestias iniciales. Fijos.</td>
-                                            </tr>
-                                            <tr class="bg-white border-b">
-                                                <td class="px-6 py-4 font-medium">Higiene Oral</td>
-                                                <td class="px-6 py-4">Se retiran para cepillado. Higiene sencilla.</td>
-                                                <td class="px-6 py-4">Requiere técnica de cepillado meticulosa.</td>
-                                            </tr>
-                                            <tr class="bg-gray-50 border-b">
-                                                <td class="px-6 py-4 font-medium">Casos Indicados</td>
-                                                <td class="px-6 py-4">Casos leves a complejos.</td>
-                                                <td class="px-6 py-4">Casos moderados a muy complejos.</td>
-                                            </tr>
-                                            <tr class="bg-white">
-                                                <td class="px-6 py-4 font-medium">Disciplina</td>
-                                                <td class="px-6 py-4">Requiere alto compromiso (22h/día).</td>
-                                                <td class="px-6 py-4">No depende del cumplimiento del paciente.</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Implantología Oral y Cirugía Regenerativa</h3>
-                            <p class="text-gray-600 mb-4">Reemplace dientes perdidos con soluciones duraderas. Somos expertos en regeneración ósea para crear la base biológica perfecta.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6 biomaterials-tabs">
-                                <h4 class="font-bold mb-4">Biomateriales en Regeneración Ósea</h4>
-                                <div class="border-b border-gray-200">
-                                    <nav class="flex space-x-4" aria-label="Tabs">
-                                        <button class="tab-button active py-2 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="autoinjerto">Autoinjerto</button>
-                                        <button class="tab-button py-2 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="aloinjerto">Aloinjerto</button>
-                                        <button class="tab-button py-2 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="xenoinjerto">Xenoinjerto</button>
-                                        <button class="tab-button py-2 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="aloplastico">Aloplástico</button>
-                                    </nav>
-                                </div>
-                                <div class="mt-4">
-                                    <div id="autoinjerto" class="tab-content active"><p><strong>Descripción:</strong> Hueso obtenido del propio paciente. <strong>Indicaciones:</strong> Considerado el "gold standard" por su alta compatibilidad y capacidad regenerativa. Ideal para defectos óseos grandes.</p></div>
-                                    <div id="aloinjerto" class="tab-content"><p><strong>Descripción:</strong> Hueso de un donante humano, procesado para garantizar seguridad. <strong>Indicaciones:</strong> Alternativa al autoinjerto, evitando una segunda zona quirúrgica. Usado en preservación de alvéolos y aumentos moderados.</p></div>
-                                    <div id="xenoinjerto" class="tab-content"><p><strong>Descripción:</strong> Hueso de origen animal (generalmente bovino), tratado para ser biocompatible. <strong>Indicaciones:</strong> Excelente para mantener el volumen óseo a largo plazo. Muy usado en elevaciones de seno maxilar.</p></div>
-                                    <div id="aloplastico" class="tab-content"><p><strong>Descripción:</strong> Materiales sintéticos biocompatibles (ej. hidroxiapatita). <strong>Indicaciones:</strong> Relleno de defectos óseos pequeños y como complemento a otros tipos de injerto para mejorar la estabilidad.</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-card bg-white rounded-lg shadow-md overflow-hidden fade-in-section">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Periodoncia y Microcirugía Plástica Gingival</h3>
-                            <p class="text-gray-600 mb-4">Cuidamos la base de su sonrisa. Tratamos la enfermedad de las encías y realizamos microcirugía para un contorno gingival saludable.</p>
-                            <button class="toggle-details text-blue-600 font-semibold">Ver Más &darr;</button>
-                        </div>
-                        <div class="details-content max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-gray-50">
-                            <div class="p-6">
-                                <p class="text-gray-700">Abordamos desde tratamientos periodontales no quirúrgicos para controlar la gingivitis y periodontitis, hasta procedimientos avanzados de microcirugía plástica. Estos últimos están diseñados para cubrir recesiones gingivales (raíces expuestas) y mejorar la estética de la encía, creando un marco armónico y saludable para sus dientes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== Sección Garantía de Excelencia ===== -->
-        <section id="garantia" class="py-20 lg:py-32">
-            <div class="container mx-auto px-6 lg:px-8">
-                 <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Garantía de Excelencia</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Nuestro compromiso con la calidad no es una promesa, es un sistema integral de tecnología y gobernanza clínica.</p>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <!-- Parte 1: Arsenal Tecnológico -->
-                    <div class="fade-in-section">
-                        <h3 class="text-2xl font-bold mb-6">Tecnología al Servicio de su Salud</h3>
-                        <ul class="space-y-6">
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0"><div class="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6a2 2 0 100-4 2 2 0 000 4zm0 14a2 2 0 100-4 2 2 0 000 4zm6-7a2 2 0 100-4 2 2 0 000 4zm-12 0a2 2 0 100-4 2 2 0 000 4z" /></svg></div></div>
-                                <div><h4 class="font-semibold">Diagnóstico Asistido por IA</h4><p class="text-gray-600">Utilizamos IA como un sistema de doble verificación para el análisis radiográfico, aumentando la precisión a un nivel sin precedentes.</p></div>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0"><div class="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2 1M4 7l2-1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1m2 1l-2 1m2-1V15a2.25 2.25 0 012.25-2.25h3.5A2.25 2.25 0 0115 15v.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div></div>
-                                <div><h4 class="font-semibold">Fabricación Digital CAD/CAM</h4><p class="text-gray-600">Diseñamos y fabricamos restauraciones con precisión micrométrica, garantizando un ajuste perfecto y resultados predecibles.</p></div>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="flex-shrink-0"><div class="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.792V21a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1h8.208M15 3a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V3z" /></svg></div></div>
-                                <div><h4 class="font-semibold">Planificación 3D Integral</h4><p class="text-gray-600">La fusión de datos de CBCT y escáneres nos permite simular cada tratamiento, minimizando riesgos y sorpresas.</p></div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Parte 2: Ecosistema -->
-                    <div class="fade-in-section">
-                        <h3 class="text-2xl font-bold mb-4">Más que una Promesa: Un Sistema de Calidad</h3>
-                        <p class="text-gray-600 mb-6">En AURA, la excelencia no es un objetivo, es un sistema. Nuestro Modelo de Gobernanza Clínica es un marco formal que asegura la supervisión, la rendición de cuentas y la mejora continua en cada aspecto de su atención.</p>
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
-                            <h4 class="font-bold text-blue-800">Nuestro Compromiso: La Revisión por Pares (Peer Review)</h4>
-                            <p class="text-blue-700 mt-2">En un proceso único, nuestros casos complejos son revisados anónimamente por un comité de especialistas. Este sistema asegura que su plan de tratamiento se beneficie de la inteligencia colectiva de nuestro equipo, garantizando la máxima calidad y seguridad.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Google Fonts: Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         
-        <!-- ===== Sección Legado y Equipo ===== -->
-        <section id="legado" class="py-20 lg:py-32 bg-gray-50">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="fade-in-section">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Nuestro Origen</h3>
-                        <p class="text-gray-600">AURA Dental Institute nació de la visión de un consorcio de especialistas pioneros. Su objetivo fue trascender las limitaciones de la práctica tradicional, creando un ecosistema clínico donde la cirugía y la prostodoncia digital convergen en un flujo de trabajo 100% digital y sinérgico para garantizar resultados predecibles desde el primer día.</p>
-                    </div>
-                    <div class="fade-in-section">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Liderazgo Intelectual</h3>
-                        <p class="text-gray-600">Nuestro equipo no solo practica la odontología; contribuye activamente a su avance. Dedicamos tiempo a la investigación, la docencia y la publicación en revistas científicas. La participación constante en congresos globales nos permite traer las últimas innovaciones directamente a su tratamiento.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Estilos personalizados y configuración de Tailwind -->
+        <style>
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
 
-        <!-- ===== Sección Contacto ===== -->
-        <section id="contacto" class="py-20 lg:py-32">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="text-center mb-16 fade-in-section">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Inicie su Transformación Hoy</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">El primer paso hacia la sonrisa que refleja su verdadera identidad es nuestra Valoración Diagnóstica Integral. Permítanos crear su Gemelo Digital y comenzar a co-diseñar su futuro.</p>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <!-- Formulario -->
-                    <div class="fade-in-section">
-                        <form action="#" method="POST" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
-                                <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                                <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                             <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
-                                <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700">Mensaje (Opcional)</label>
-                                <textarea name="message" id="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                    Solicitar mi Valoración
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Información y Mapa -->
-                    <div class="fade-in-section">
-                        <div class="space-y-4 text-gray-600">
-                            <p><strong>Dirección:</strong> Av. Principal 123, Suite 45, Ciudad, País</p>
-                            <p><strong>Teléfono:</strong> +1 (234) 567-890</p>
-                            <p><strong>Correo:</strong> contacto@aurainstitute.com</p>
-                            <p><strong>Horarios:</strong> Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                        </div>
-                        <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.529029961608!2d-75.58616268523102!3d6.193635995516091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e468280b3292903%3A0x8385698b6a3b2b4b!2sParque%20El%20Poblado!5e0!3m2!1ses-419!2sco!4v1678886458013!5m2!1ses-419!2sco" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ===== Pie de Página (Footer) ===== -->
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto py-8 px-6 lg:px-8 text-center">
-            <p>&copy; <span id="current-year"></span> AURA Dental Institute. Todos los derechos reservados.</p>
-            <div class="mt-4">
-                <a href="#" class="text-gray-400 hover:text-white mx-2">Política de Privacidad</a>
-                <span class="text-gray-500">|</span>
-                <a href="#" class="text-gray-400 hover:text-white mx-2">Términos de Servicio</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ===== Scripts JavaScript ===== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- Navbar Scroll Effect ---
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('navbar-scrolled');
-                } else {
-                    navbar.classList.remove('navbar-scrolled');
-                }
-            });
-            
-            // --- Mobile Menu Toggle ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // --- Fade-in Animation on Scroll ---
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // --- Service Card Accordion ---
-            const serviceCards = document.querySelectorAll('.service-card');
-            serviceCards.forEach(card => {
-                const button = card.querySelector('.toggle-details');
-                const content = card.querySelector('.details-content');
-                
-                button.addEventListener('click', () => {
-                    const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
-                    if (isExpanded) {
-                        content.style.maxHeight = '0px';
-                        button.innerHTML = 'Ver Más &darr;';
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        button.innerHTML = 'Ver Menos &uarr;';
-                    }
-                });
-            });
-
-            // --- Biomaterials Tabs ---
-            const tabsContainer = document.querySelector('.biomaterials-tabs');
-            if(tabsContainer) {
-                const tabButtons = tabsContainer.querySelectorAll('.tab-button');
-                const tabContents = tabsContainer.querySelectorAll('.tab-content');
-
-                tabButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        // Desactivar todos
-                        tabButtons.forEach(btn => btn.classList.remove('active'));
-                        tabContents.forEach(content => content.classList.remove('active'));
-
-                        // Activar el seleccionado
-                        button.classList.add('active');
-                        const targetTab = button.getAttribute('data-tab');
-                        document.getElementById(targetTab).classList.add('active');
-                    });
-                });
+            /* Definición de la paleta de colores */
+            :root {
+                --color-primary: #1E3A8A; /* Azul oscuro corporativo */
+                --color-secondary: #2563EB; /* Azul de acento vibrante */
+                --color-background: #F9FAFB; /* Gris muy claro */
+                --color-text-dark: #1F2937; /* Gris oscuro para texto */
+                --color-text-light: #6B7280; /* Gris medio para descripciones */
             }
 
-            // --- Update Footer Year ---
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
-</html>
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: var(--color-background);
+                color: var(--color-text-dark);
+            }
+
+            /* Animación para secciones */
+            .fade-in-section {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+
+            .fade-in-section.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Keyframes para las animaciones del Hero */
+            @keyframes fade-in-down {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes fade-in-up {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .animate-fade-in-down {
+                animation: fade-in-down 1s ease-out;
+            }
+
+            .animate-fade-in-up {
+                animation: fade-in-up 1s ease-out;
+                animation-delay: 0.5s;
+            }
+
+            /* Estilo para el navbar con fondo al hacer scroll */
+            .navbar-scrolled {
+                background-color: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            }
+
+            /* Estilo para el video de fondo del Hero */
+            #hero-video {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                z-index: -100;
+                transform: translateX(-50%) translateY(-50%);
+                object-fit: cover;
+            }
+            
+            /* Estilos específicos para el menú de carpetas */
+            .folder-menu-item {
+                position: relative;
+                background-color: #E5E7EB;
+                color: var(--color-text-light);
+                border-radius: 0.5rem;
+                border-bottom: 2px solid #D1D5DB;
+                transition: all 0.2s ease-in-out;
+            }
+            .folder-menu-item:hover {
+                background-color: #D1D5DB;
+                transform: translateX(4px);
+            }
+            .folder-menu-item.active {
+                background-color: #ffffff;
+                color: var(--color-text-dark);
+                transform: translateX(0);
+                border-bottom: 2px solid var(--color-secondary);
+                z-index: 10;
+                font-weight: 600;
+            }
+            .folder-menu-item.active::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1rem;
+                height: 100%;
+                background-color: var(--color-secondary);
+                border-radius: 0.5rem 0 0 0.5rem;
+            }
+
+            /* Estilos para el carrusel de testimonios */
+            .testimonial-carousel {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .testimonial-container {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                animation: scroll-x 40s linear infinite;
+            }
+
+            /* Pausar la animación al pasar el ratón */
+            .testimonial-container:hover {
+                animation-play-state: paused;
+            }
+
+            .testimonial-slide {
+                flex-shrink: 0;
+                width: 400px; /* Ancho de cada testimonio */
+                padding: 1rem;
+            }
+
+            @keyframes scroll-x {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-50%);
+                }
+            }
+            
+            /* Estilos para la nueva sección de equipo */
+            .doctor-photo-item {
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+            .doctor-photo-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            }
+            .doctor-photo-item.active {
+                transform: translateY(0);
+                box-shadow: 0 5px 10px -3px rgb(0 0 0 / 0.2);
+                border-bottom: 4px solid var(--color-secondary);
+            }
+
+            /* Estilos para la transición suave de la información del equipo */
+            #team-info-panel {
+                position: relative;
+                min-height: 250px; /* Asegura que el panel no se colapse durante la transición */
+            }
+            .doctor-details-content {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+                position: absolute; /* Permite que los elementos se superpongan */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none; /* Evita clics en elementos ocultos */
+            }
+            .doctor-details-content.active {
+                opacity: 1;
+                transform: translateY(0);
+                position: static; /* Ocupa espacio en el layout cuando está activo */
+                pointer-events: auto; /* Permite clics cuando está activo */
+            }
+            .doctor-details-content.transitioning-out {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        </style>
+    </head>
+    <body class="bg-white text-gray-800 antialiased">
+
+        <!-- ===== Barra de Navegación (Navbar) ===== -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3">
+            <div class="container mx-auto px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <a href="#" class="text-2xl font-bold text-gray-800 tracking-wider">AURA</a>
+                    
+                    <!-- Enlaces de Navegación (Desktop) -->
+                    <div class="hidden md:flex space-x-8 items-center">
+                        <a href="#filosofia" class="text-gray-600 hover:text-blue-600 transition duration-300">Filosofía</a>
+                        <a href="#experiencia" class="text-gray-600 hover:text-blue-600 transition duration-300">La Experiencia</a>
+                        <a href="#servicios" class="text-gray-600 hover:text-blue-600 transition duration-300">Servicios</a>
+                        <a href="#garantia" class="text-gray-600 hover:text-blue-600 transition duration-300">Garantía de Excelencia</a>
+                        <a href="#testimonios" class="text-gray-600 hover:text-blue-600 transition duration-300">Testimonios</a>
+                        <a href="#equipo" class="text-gray-600 hover:text-blue-600 transition duration-300">Equipo</a>
+                    </div>
+                    
+                    <!-- Botón CTA -->
+                    <a href="#contacto" class="hidden md:inline-block bg-[var(--color-secondary)] text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Agende su Valoración
+                    </a>
+
+                    <!-- Menú Móvil (Hamburguesa) -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Menú desplegable móvil -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white mt-2">
+                <a href="#filosofia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Filosofía</a>
+                <a href="#experiencia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">La Experiencia</a>
+                <a href="#servicios" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Servicios</a>
+                <a href="#garantia" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Garantía de Excelencia</a>
+                <a href="#testimonios" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Testimonios</a>
+                <a href="#equipo" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Equipo</a>
+                <div class="p-4">
+                    <a href="#contacto" class="block text-center w-full bg-[var(--color-secondary)] text-white font-semibold py-2 px-5 rounded-lg hover:bg-blue-700 transition-all duration-300">
+                        Agende su Valoración
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ===== Sección Hero ===== -->
+        <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <video id="hero-video" autoplay loop muted playsinline>
+                <source src="./assets/video/Video_Dental_Generado_Para_Web.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="relative z-10 px-4 text-white">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 animate-fade-in-down" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                    La Fusión de Ciencia y Arte para Catalizar su Confianza.
+                </h1>
+                <h2 class="text-lg md:text-2xl max-w-4xl mx-auto mb-8 animate-fade-in-up" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+                    En AURA Dental Institute, trascendemos la odontología convencional. Diseñamos y mantenemos sonrisas que reflejan su identidad única a través de la ciencia digital y regenerativa de alta complejidad.
+                </h2>
+                <a href="#contacto" class="bg-white text-[var(--color-secondary)] font-bold py-4 px-10 rounded-lg text-lg hover:bg-gray-200 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                    Agende su Valoración Diagnóstica Integral
+                </a>
+            </div>
+        </section>
+
+        <main>
+            <!-- ===== Sección Filosofía ===== -->
+            <section id="filosofia" class="py-20 lg:py-32 bg-[var(--color-background)]">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in-section">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Nuestra Filosofía</h2>
+                        <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">Los pilares que fundamentan nuestro compromiso con su bienestar y la excelencia en cada resultado.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                        <!-- Tarjeta 1: Integridad Científica -->
+                        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" /></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Integridad Científica</h3>
+                            <p class="text-[var(--color-text-light)]">Cada diagnóstico se fundamenta en la más rigurosa evidencia científica para garantizar soluciones seguras, eficaces y duraderas.</p>
+                        </div>
+                        <!-- Tarjeta 2: Excelencia Clínica -->
+                        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 100ms;">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4M14 3v4m-2-2h4M18 17v4m-2-2h4M9 21h6m-3-3v3m-3-12h6m-3-3v3" /></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Excelencia Clínica</h3>
+                            <p class="text-[var(--color-text-light)]">Nuestro sistema de Gobernanza Clínica y Revisión por Pares asegura resultados que consistentemente superan las expectativas.</p>
+                        </div>
+                        <!-- Tarjeta 3: Innovación Constante -->
+                        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 200ms;">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Innovación Constante</h3>
+                            <p class="text-[var(--color-text-light)]">Integramos tecnologías de vanguardia como la imagenología 3D y la IA para mejorar la precisión y su experiencia como paciente.</p>
+                        </div>
+                        <!-- Tarjeta 4: Empatía y Cuidado -->
+                        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 300ms;">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Empatía y Cuidado</h3>
+                            <p class="text-[var(--color-text-light)]">Tratamos a personas, no a casos. Cada plan de tratamiento es co-creado con usted, respetando sus objetivos y singularidad.</p>
+                        </div>
+                        <!-- Tarjeta 5: Transparencia Absoluta -->
+                        <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-section" style="transition-delay: 400ms;">
+                            <div class="bg-blue-100 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Transparencia Absoluta</h3>
+                            <p class="text-[var(--color-text-light)]">Fomentamos una comunicación honesta sobre diagnósticos, opciones y costes, empoderándole para tomar las mejores decisiones.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección La Experiencia AURA ===== -->
+            <section id="experiencia" class="py-20 lg:py-32">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-20 fade-in-section">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Usted es el Co-diseñador de su Sonrisa</h2>
+                        <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-3xl mx-auto">La Experiencia AURA es un viaje colaborativo y predecible hacia la sonrisa que siempre ha deseado, donde usted tiene el control en cada paso.</p>
+                    </div>
+
+                    <div class="relative">
+                        <!-- Línea de tiempo vertical -->
+                        <div class="hidden lg:block absolute h-full border-l-2 border-blue-200 border-dashed" style="left: 50%; transform: translateX(-1px);"></div>
+                        
+                        <!-- Paso 1 -->
+                        <div class="mb-16 lg:mb-24 flex flex-col lg:flex-row items-center fade-in-section">
+                            <div class="lg:w-1/2 lg:pr-12">
+                                <div class="bg-[var(--color-secondary)] text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                                <h3 class="text-2xl font-bold mb-4">La Creación de su Gemelo Digital</h3>
+                                <p class="text-[var(--color-text-light)]">Su primera visita es una inmersión diagnóstica integral. Mediante la fusión de fotografía de alta definición, un escáner intraoral 3D y una tomografía computarizada (CBCT), creamos una réplica virtual exacta. Este "Gemelo Digital" es el lienzo sobre el que planificaremos su transformación con precisión milimétrica.</p>
+                            </div>
+                            <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0 flex justify-center">
+                                <img src="./assets/images/GemeloDigital.png" alt="Creación del Gemelo Digital" class="rounded-lg shadow-xl">
+                            </div>
+                        </div>
+
+                        <!-- Paso 2 -->
+                        <div class="mb-16 lg:mb-24 flex flex-col lg:flex-row-reverse items-center fade-in-section">
+                            <div class="lg:w-1/2 lg:pl-12">
+                                <div class="bg-[var(--color-secondary)] text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                                <h3 class="text-2xl font-bold mb-4">Co-diseñando su Futuro</h3>
+                                <p class="text-[var(--color-text-light)]">Utilizando su Gemelo Digital, aplicamos el protocolo de Diseño de Sonrisa Digital (DSD). Le presentamos una simulación fotorrealista y, más importante, una maqueta (mock-up) que puede probarse. Podrá ver y sentir su nueva sonrisa en su propio rostro antes de iniciar cualquier tratamiento, asegurando su completa satisfacción.</p>
+                            </div>
+                            <div class="lg:w-1/2 lg:pr-12 mt-8 lg:mt-0 flex justify-center">
+                                <img src="./assets/images/sonrisaDiseño.png" alt="Diseño de Sonrisa Digital" class="rounded-lg shadow-xl">
+                            </div>
+                        </div>
+
+                        <!-- Paso 3 -->
+                        <div class="flex flex-col lg:flex-row items-center fade-in-section">
+                            <div class="lg:w-1/2 lg:pr-12">
+                                <div class="bg-[var(--color-secondary)] text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                                <h3 class="text-2xl font-bold mb-4">Ejecución de Precisión y Cuidado Continuo</h3>
+                                <p class="text-[var(--color-text-light)]">Una vez aprobado el diseño, ejecutamos el plan bajo los más estrictos protocolos de bioseguridad. Nuestro compromiso no termina ahí; le acompañamos con un seguimiento personalizado para asegurar una recuperación óptima y la longevidad de los resultados.</p>
+                            </div>
+                            <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0 flex justify-center">
+                                <img src="./assets/images/bioseguridad.png" alt="Protocolos de Bioseguridad" class="rounded-lg shadow-xl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección Servicios (Rediseñada) ===== -->
+            <section id="servicios" class="py-20 lg:py-32 bg-[var(--color-background)]">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in-section">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Portafolio de Servicios de Alta Especialidad</h2>
+                        <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">Explore nuestras soluciones integrales diseñadas para restaurar, mejorar y mantener su salud oral con la máxima calidad.</p>
+                    </div>
+                    
+                    <!-- Contenedor principal para la nueva estructura de servicios -->
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <!-- Menú de Carpetas (Sección Izquierda) -->
+                        <div class="lg:w-1/3 flex flex-col gap-4 fade-in-section">
+                            <button class="p-5 folder-menu-item active" data-service="diagnostico">
+                                Diagnóstico Avanzado y Odontología Preventiva
+                            </button>
+                            <button class="p-5 folder-menu-item" data-service="restauradora">
+                                Odontología Restauradora y Endodoncia
+                            </button>
+                            <button class="p-5 folder-menu-item" data-service="estetica">
+                                Diseño de Sonrisa y Estética Dental
+                            </button>
+                            <button class="p-5 folder-menu-item" data-service="ortodoncia">
+                                Ortodoncia Digital e Invisible
+                            </button>
+                            <button class="p-5 folder-menu-item" data-service="implantologia">
+                                Implantología Oral y Cirugía Regenerativa
+                            </button>
+                            <button class="p-5 folder-menu-item" data-service="periodoncia">
+                                Periodoncia y Microcirugía Gingival
+                            </button>
+                        </div>
+
+                        <!-- Contenido de Servicios (Sección Derecha) -->
+                        <div class="lg:w-2/3 bg-white rounded-lg shadow-md p-8 fade-in-section">
+                            
+                            <!-- Contenedor para la imagen y la descripción -->
+                            <div id="service-content-display">
+                                <!-- Contenido por servicio - Diagnóstico -->
+                                <div id="diagnostico" class="service-panel active">
+                                    <img src="./assets/images/diagnosticoAvanzado.png" alt="Imagen de Diagnóstico Avanzado" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Diagnóstico Avanzado y Odontología Preventiva</h3>
+                                    <p class="text-[var(--color-text-light)]">La base de todo tratamiento exitoso. Utilizamos tecnología 3D como CBCT y escáner intraoral para un diagnóstico preciso, y programas preventivos para mantener su salud a largo plazo. Nuestra tecnología no solo mejora la precisión, sino que también reduce la radiación y elimina la incomodidad de los moldes tradicionales.</p>
+                                </div>
+
+                                <!-- Contenido por servicio - Restauradora -->
+                                <div id="restauradora" class="service-panel hidden">
+                                    <img src="./assets/images/restauradora.png" alt="Imagen de Odontología Restauradora" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Odontología Restauradora y Endodoncia de Precisión</h3>
+                                    <p class="text-[var(--color-text-light)]">Restauramos función y estética con materiales biomiméticos de vanguardia. En endodoncia, el uso de magnificación (microscopios) nos permite tratar conductos con una precisión inigualable, lo que aumenta la tasa de éxito y previene reinfecciones.</p>
+                                </div>
+
+                                <!-- Contenido por servicio - Estética -->
+                                <div id="estetica" class="service-panel hidden">
+                                    <img src="./assets/images/diseñoSonrisa.png" alt="Imagen de Diseño de Sonrisa" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Diseño de Sonrisa y Estética Dental de Vanguardia</h3>
+                                    <p class="text-[var(--color-text-light)]">Creamos sonrisas armónicas a través del Diseño de Sonrisa Digital (DSD) y carillas de disilicato de litio ultrafinas y resistentes. El proceso DSD actúa como el plano arquitectónico que guía cada paso del tratamiento estético, garantizando la conservación de la estructura de sus dientes.</p>
+                                </div>
+
+                                <!-- Contenido por servicio - Ortodoncia -->
+                                <div id="ortodoncia" class="service-panel hidden">
+                                    <img src="./assets/images/ortodonciaInvisible.png" alt="Imagen de Ortodoncia Digital" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Ortodoncia Digital e Invisible</h3>
+                                    <p class="text-[var(--color-text-light)]">Alinee su sonrisa con precisión y discreción. Ofrecemos desde alineadores invisibles hasta los brackets de autoligado más eficientes. Nuestros tratamientos se planifican digitalmente para asegurar un movimiento dental predecible y optimizar el tiempo de tratamiento.</p>
+                                </div>
+
+                                <!-- Contenido por servicio - Implantología -->
+                                <div id="implantologia" class="service-panel hidden">
+                                    <img src="./assets/images/implantologiaOral.png" alt="Imagen de Implantología Oral" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Implantología Oral y Cirugía Regenerativa</h3>
+                                    <p class="text-[var(--color-text-light)]">Reemplace dientes perdidos con soluciones duraderas y altamente predecibles. Somos expertos en regeneración ósea y planificación guiada 3D para crear la base biológica perfecta, garantizando el éxito a largo plazo de sus implantes.</p>
+                                </div>
+
+                                <!-- Contenido por servicio - Periodoncia -->
+                                <div id="periodoncia" class="service-panel hidden">
+                                    <img src="./assets/images/microcirugiaGingival.png" alt="Imagen de Periodoncia" class="rounded-lg shadow-lg mb-6 w-full">
+                                    <h3 class="text-2xl font-bold mb-4">Periodoncia y Microcirugía Plástica Gingival</h3>
+                                    <p class="text-[var(--color-text-light)]">Cuidamos la base de su sonrisa. Tratamos la enfermedad de las encías y realizamos microcirugía para un contorno gingival saludable. Estos procedimientos mejoran la estética, cubren recesiones y optimizan la salud general de sus encías.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección Garantía de Excelencia ===== -->
+            <section id="garantia" class="py-20 lg:py-32">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in-section">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Garantía de Excelencia</h2>
+                        <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">Nuestro compromiso con la calidad no es una promesa, es un sistema integral de tecnología y gobernanza clínica.</p>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Parte 1: Arsenal Tecnológico -->
+                        <div class="fade-in-section">
+                            <h3 class="text-2xl font-bold mb-6">Tecnología al Servicio de su Salud</h3>
+                            <ul class="space-y-6">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0"><div class="bg-blue-100 text-[var(--color-secondary)] rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6a2 2 0 100-4 2 2 0 000 4zm0 14a2 2 0 100-4 2 2 0 000 4zm6-7a2 2 0 100-4 2 2 0 000 4zm-12 0a2 2 0 100-4 2 2 0 000 4z" /></svg></div></div>
+                                    <div><h4 class="font-semibold">Diagnóstico Asistido por IA</h4><p class="text-[var(--color-text-light)]">Utilizamos IA como un sistema de doble verificación para el análisis radiográfico, aumentando la precisión a un nivel sin precedentes.</p></div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0"><div class="bg-blue-100 text-[var(--color-secondary)] rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2 1M4 7l2-1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1m2 1l-2 1m2-1V15a2.25 2.25 0 012.25-2.25h3.5A2.25 2.25 0 0115 15v.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div></div>
+                                    <div><h4 class="font-semibold">Fabricación Digital CAD/CAM</h4><p class="text-[var(--color-text-light)]">Diseñamos y fabricamos restauraciones con precisión micrométrica, garantizando un ajuste perfecto y resultados predecibles.</p></div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0"><div class="bg-blue-100 text-[var(--color-secondary)] rounded-full w-10 h-10 flex items-center justify-center mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.792V21a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1h8.208M15 3a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V3z" /></svg></div></div>
+                                    <div><h4 class="font-semibold">Planificación 3D Integral</h4><p class="text-[var(--color-text-light)]">La fusión de datos de CBCT y escáneres nos permite simular cada tratamiento, minimizando riesgos y sorpresas.</p></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Parte 2: Ecosistema -->
+                        <div class="fade-in-section">
+                            <h3 class="text-2xl font-bold mb-4">Más que una Promesa: Un Sistema de Calidad</h3>
+                            <p class="text-[var(--color-text-light)] mb-6">En AURA, la excelencia no es un objetivo, es un sistema. Nuestro Modelo de Gobernanza Clínica es un marco formal que asegura la supervisión, la rendición de cuentas y la mejora continua en cada aspecto de su atención.</p>
+                            <div class="bg-blue-50 border-l-4 border-[var(--color-secondary)] p-6 rounded-r-lg">
+                                <h4 class="font-bold text-[var(--color-primary)]">Nuestro Compromiso: La Revisión por Pares (Peer Review)</h4>
+                                <p class="text-[var(--color-text-dark)] mt-2">En un proceso único, nuestros casos complejos son revisados anónimamente por un comité de especialistas. Este sistema asegura que su plan de tratamiento se beneficie de la inteligencia colectiva de nuestro equipo, garantizando la máxima calidad y seguridad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección Testimonios ===== -->
+            <section id="testimonios" class="py-20 lg:py-32 bg-[var(--color-background)]">
+                <div class="container mx-auto px-6 lg:px-8 text-center fade-in-section">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Nuestros Pacientes Hablan por Nosotros</h2>
+                    <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">La mejor prueba de nuestra excelencia es la confianza y la satisfacción de quienes han transformado su sonrisa con nosotros.</p>
+                    
+                    <div class="testimonial-carousel max-w-full mx-auto mt-12">
+                        <div id="testimonial-container" class="testimonial-container">
+                            <!-- Los testimonios se generarán dinámicamente aquí -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ===== Sección del Equipo (Nueva) ===== -->
+            <section id="equipo" class="py-20 lg:py-32">
+                <div class="container mx-auto px-6 lg:px-8 text-center fade-in-section">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Conozca a Nuestros Doctores</h2>
+                    <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-2xl mx-auto">Nuestro equipo de especialistas, con un compromiso inquebrantable con la educación y la innovación, lidera el camino hacia su bienestar dental.</p>
+                    
+                    <!-- Contenedor principal para las fotos y la información del equipo -->
+                    <div class="mt-16 bg-white rounded-xl shadow-lg p-4 md:p-8">
+                        <!-- Galería de fotos deslizable -->
+                        <div id="doctor-photos-container" class="flex flex-row gap-6 overflow-x-auto snap-x snap-mandatory pb-4 justify-center">
+                            <!-- Doctor 1 -->
+                            <div class="doctor-photo-item flex-shrink-0 w-44 snap-center transition-transform duration-300 transform hover:scale-105 active" data-doctor="ana">
+                                <img src="./assets/images/Doctores/AnaLopez.png?text=Dra.+Ana+López" alt="Retrato de la Dra. Ana López" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                                <h3 class="mt-4 font-bold text-lg">Dra. Ana López</h3>
+                                <p class="text-sm text-gray-500">Especialista en Implantología</p>
+                            </div>
+                            <!-- Doctor 2 -->
+                            <div class="doctor-photo-item flex-shrink-0 w-44 snap-center transition-transform duration-300 transform hover:scale-105" data-doctor="carlos">
+                                <img src="./assets/images/Doctores/CarlosPerez.png?text=Dr.+Carlos+Pérez" alt="Retrato del Dr. Carlos Pérez" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                                <h3 class="mt-4 font-bold text-lg">Dr. Carlos Pérez</h3>
+                                <p class="text-sm text-gray-500">Especialista en Estética Dental</p>
+                            </div>
+                            <!-- Doctor 3 -->
+                            <div class="doctor-photo-item flex-shrink-0 w-44 snap-center transition-transform duration-300 transform hover:scale-105" data-doctor="laura">
+                                <img src="./assets/images/Doctores/LauraSanchez.png?text=Dra.+Laura+Sánchez" alt="Retrato de la Dra. Laura Sánchez" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                                <h3 class="mt-4 font-bold text-lg">Dra. Laura Sánchez</h3>
+                                <p class="text-sm text-gray-500">Especialista en Ortodoncia</p>
+                            </div>
+                        </div>
+
+                        <!-- Panel de Información -->
+                        <div id="team-info-panel" class="mt-8 text-left p-6 bg-gray-50 rounded-lg">
+                            <!-- Contenido del primer doctor por defecto -->
+                            <div id="ana-details" class="doctor-details-content active">
+                                <h3 class="text-2xl font-bold text-[var(--color-text-dark)]">Dra. Ana López</h3>
+                                <p class="text-[var(--color-secondary)] font-semibold mt-1">Especialista en Implantología y Cirugía Oral</p>
+                                <p class="text-[var(--color-text-light)] mt-4 text-sm">Especialista en implantología oral y regeneración ósea. Con un doctorado en Cirugía Regenerativa de la Universidad de Madrid, ha sido ponente en más de 50 congresos internacionales y es una autoridad en la restauración de sonrisas complejas. </p>
+                            </div>
+                            <!-- Contenido del segundo doctor -->
+                            <div id="carlos-details" class="doctor-details-content">
+                                <h3 class="text-2xl font-bold text-[var(--color-text-dark)]">Dr. Carlos Pérez</h3>
+                                <p class="text-[var(--color-secondary)] font-semibold mt-1">Especialista en Estética Dental y Diseño de Sonrisa</p>
+                                <p class="text-[var(--color-text-light)] mt-4 text-sm">Pionero en el uso del Diseño de Sonrisa Digital (DSD) en Latinoamérica. Graduado de la Universidad de Harvard con una especialización en Estética Avanzada. Su enfoque se centra en la co-creación de sonrisas que armonizan con la personalidad y las facciones de cada paciente. </p>
+                            </div>
+                            <!-- Contenido del tercer doctor -->
+                            <div id="laura-details" class="doctor-details-content">
+                                <h3 class="text-2xl font-bold text-[var(--color-text-dark)]">Dra. Laura Sánchez</h3>
+                                <p class="text-[var(--color-secondary)] font-semibold mt-1">Especialista en Ortodoncia y Endodoncia</p>
+                                <p class="text-[var(--color-text-light)] mt-4 text-sm">Experta en tratamientos de ortodoncia digital, incluyendo alineadores invisibles y micro-ortodoncia. Posee una maestría en Endodoncia de la Universidad de Miami y es conocida por su habilidad para resolver casos complejos de manera predecible y mínimamente invasiva. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección Legado y Equipo ===== -->
+            <section id="legado" class="py-20 lg:py-32 bg-[var(--color-background)]">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="fade-in-section">
+                            <h3 class="text-2xl font-bold text-[var(--color-text-dark)] mb-4">Nuestro Origen</h3>
+                            <p class="text-[var(--color-text-light)]">AURA Dental Institute nació de la visión de un consorcio de especialistas pioneros. Su objetivo fue trascender las limitaciones de la práctica tradicional, creando un ecosistema clínico donde la cirugía y la prostodoncia digital convergen en un flujo de trabajo 100% digital y sinérgico para garantizar resultados predecibles desde el primer día.</p>
+                        </div>
+                        <div class="fade-in-section">
+                            <h3 class="text-2xl font-bold text-[var(--color-text-dark)] mb-4">Liderazgo Intelectual</h3>
+                            <p class="text-[var(--color-text-light)]">Nuestro equipo no solo practica la odontología; contribuye activamente a su avance. Dedicamos tiempo a la investigación, la docencia y la publicación en revistas científicas. La participación constante en congresos globales nos permite traer las últimas innovaciones directamente a su tratamiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Sección Contacto ===== -->
+            <section id="contacto" class="py-20 lg:py-32">
+                <div class="container mx-auto px-6 lg:px-8">
+                    <div class="text-center mb-16 fade-in-section">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[var(--color-text-dark)]">Inicie su Transformación Hoy</h2>
+                        <p class="mt-4 text-lg text-[var(--color-text-light)] max-w-3xl mx-auto">El primer paso hacia la sonrisa que refleja su verdadera identidad es nuestra Valoración Diagnóstica Integral. Permítanos crear su Gemelo Digital y comenzar a co-diseñar su futuro.</p>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Formulario -->
+                        <div class="fade-in-section">
+                            <form action="#" method="POST" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                    <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--color-secondary)] focus:border-[var(--color-secondary)]">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                                    <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--color-secondary)] focus:border-[var(--color-secondary)]">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                                    <input type="tel" name="phone" id="phone" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--color-secondary)] focus:border-[var(--color-secondary)]">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700">Mensaje (Opcional)</label>
+                                    <textarea name="message" id="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--color-secondary)] focus:border-[var(--color-secondary)]"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[var(--color-secondary)] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-secondary)]">
+                                        Solicitar mi Valoración
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Información y Mapa -->
+                        <div class="fade-in-section">
+                            <div class="space-y-4 text-[var(--color-text-light)]">
+                                <p><strong>Dirección:</strong> Av. Principal 123, Suite 45, Ciudad, País</p>
+                                <p><strong>Teléfono:</strong> +1 (234) 567-890</p>
+                                <p><strong>Correo:</strong> contacto@aurainstitute.com</p>
+                                <p><strong>Horarios:</strong> Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                            </div>
+                            <div class="mt-8 rounded-lg overflow-hidden shadow-lg">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.529029961608!2d-75.58616268523102!3d6.193635995516091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e468280b3292903%3A0x8385698b6a3b2b4b!2sParque%20El%20Poblado!5e0!3m2!1ses-419!2sco!4v1678886458013!5m2!1ses-419!2sco" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== Pie de Página (Footer) ===== -->
+        <footer class="bg-gray-800 text-white">
+            <div class="container mx-auto py-8 px-6 lg:px-8 text-center">
+                <p>&copy; <span id="current-year"></span> AURA Dental Institute. Todos los derechos reservados.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white mx-2">Política de Privacidad</a>
+                    <span class="text-gray-500">|</span>
+                    <a href="#" class="text-gray-400 hover:text-white mx-2">Términos de Servicio</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ===== Scripts JavaScript ===== -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                // --- Navbar Scroll Effect ---
+                const navbar = document.getElementById('navbar');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('navbar-scrolled');
+                    } else {
+                        navbar.classList.remove('navbar-scrolled');
+                    }
+                });
+                
+                // --- Mobile Menu Toggle ---
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // --- Fade-in Animation on Scroll ---
+                const sections = document.querySelectorAll('.fade-in-section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+                
+                // --- New Services Section Logic ---
+                const folderButtons = document.querySelectorAll('.folder-menu-item');
+                const servicePanels = document.querySelectorAll('.service-panel');
+
+                folderButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove 'active' class from all buttons and panels
+                        folderButtons.forEach(btn => btn.classList.remove('active'));
+                        servicePanels.forEach(panel => panel.classList.add('hidden'));
+
+                        // Add 'active' class to the clicked button and its corresponding panel
+                        const serviceId = button.getAttribute('data-service');
+                        document.getElementById(serviceId).classList.remove('hidden');
+                        button.classList.add('active');
+                    });
+                });
+
+                // --- Testimonial Carousel Logic ---
+                const testimonialsData = [
+                    {
+                        name: "Sofía M.",
+                        specialty: "Paciente de Implantología Oral",
+                        quote: "El nivel de detalle y precisión en mi tratamiento de implantes superó todas mis expectativas. El equipo de AURA me hizo sentir segura y cuidada en cada etapa. Es una inversión en mi salud y mi confianza que no tiene precio.",
+                        photo: "./assets/images/testimonios/SofiaM.png"
+                    },
+                    {
+                        name: "Javier P.",
+                        specialty: "Paciente de Diseño de Sonrisa",
+                        quote: "Poder 'probar' mi nueva sonrisa con el Diseño de Sonrisa Digital antes de empezar fue una experiencia asombrosa. Los resultados finales son exactamente lo que imaginé, ¡o incluso mejor!",
+                        photo: "./assets/images/testimonios/JavierP.png"
+                    },
+                    {
+                        name: "Carolina D.",
+                        specialty: "Paciente de Diagnóstico Avanzado",
+                        quote: "Me impresionó la transparencia en el diagnóstico. Me explicaron todo con detalle y me dieron opciones claras, lo que me permitió tomar la mejor decisión para mi salud. Es una clínica que inspira confianza.",
+                        photo: "./assets/images/testimonios/CarolinaD.png"
+                    },
+                    {
+                        name: "Alejandro R.",
+                        specialty: "Paciente de Ortodoncia Invisible",
+                        quote: "Siempre quise alinear mis dientes sin los brackets metálicos. Los alineadores de AURA fueron la solución perfecta: discretos, cómodos y con resultados increíbles. ¡Estoy muy feliz con mi nueva sonrisa!",
+                        photo: "./assets/images/testimonios/AlejandroR.png"
+                    },
+                    {
+                        name: "Valeria G.",
+                        specialty: "Paciente de Restauración Dental",
+                        quote: "La restauración de mi diente fue impecable. El Dr. Pérez trabajó con tanto detalle que parece mi diente original. La tecnología que utilizan realmente marca la diferencia.",
+                        photo: "./assets/images/testimonios/ValeriaG.png"
+                    },
+                    {
+                        name: "Mateo B.",
+                        specialty: "Paciente de Periodoncia",
+                        quote: "Tenía una gran preocupación por la salud de mis encías. El equipo de periodoncia fue increíblemente profesional y me ayudó a recuperar la salud oral que había perdido. ¡Gracias!",
+                        photo: "./assets/images/testimonios/MateoB.png"
+                    },
+                    {
+                        name: "Isabella F.",
+                        specialty: "Paciente de Estética Dental",
+                        quote: "Mis carillas son perfectas. No solo se ven naturales, sino que se sienten muy cómodas. La Dra. Sánchez es una verdadera artista, superó todas mis expectativas.",
+                        photo: "./assets/images/testimonios/IsabelaF.png"
+                    },
+                    {
+                        name: "Daniel L.",
+                        specialty: "Paciente de Implantes",
+                        quote: "El proceso de implantes fue mucho más sencillo de lo que imaginé. La planificación 3D me dio total tranquilidad y el resultado final es fantástico.",
+                        photo: "./assets/images/testimonios/DanielL.png"
+                    },
+                    {
+                        name: "Camila S.",
+                        specialty: "Paciente de Endodoncia",
+                        quote: "El tratamiento de conducto fue rápido y sin dolor. La tecnología con microscopio que usan es impresionante. Recomendaría AURA a cualquiera que necesite un tratamiento de alta calidad.",
+                        photo: "./assets/images/testimonios/CamilaS.png"
+                    },
+                    {
+                        name: "Ricardo J.",
+                        specialty: "Paciente de Cirugía Regenerativa",
+                        quote: "La regeneración ósea que me hicieron fue un éxito total. Gracias a su pericia, ahora puedo recibir mis implantes. Un equipo de profesionales de primer nivel.",
+                        photo: "./assets/images/testimonios/RicardoJ.png"
+                    }
+                ];
+                
+                const testimonialContainer = document.getElementById('testimonial-container');
+                const totalTestimonials = testimonialsData.length;
+
+                testimonialsData.forEach(testimonial => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('testimonial-slide');
+                    slide.innerHTML = `
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full flex flex-col items-center">
+                            <img class="w-20 h-20 rounded-full object-cover mb-4" src="${testimonial.photo}" alt="Foto de ${testimonial.name}">
+                            <blockquote class="text-lg italic text-[var(--color-text-light)] mb-4 flex-grow">
+                                "${testimonial.quote}"
+                            </blockquote>
+                            <p class="mt-auto font-semibold text-[var(--color-text-dark)]">- ${testimonial.name}</p>
+                            <p class="text-sm text-[var(--color-text-light)]">${testimonial.specialty}</p>
+                        </div>
+                    `;
+                    testimonialContainer.appendChild(slide);
+                });
+
+                // Duplicar los testimonios para un scroll infinito
+                testimonialsData.forEach(testimonial => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('testimonial-slide');
+                    slide.innerHTML = `
+                        <div class="bg-white p-8 rounded-xl shadow-lg h-full flex flex-col items-center">
+                            <img class="w-20 h-20 rounded-full object-cover mb-4" src="${testimonial.photo}" alt="Foto de ${testimonial.name}">
+                            <blockquote class="text-lg italic text-[var(--color-text-light)] mb-4 flex-grow">
+                                "${testimonial.quote}"
+                            </blockquote>
+                            <p class="mt-auto font-semibold text-[var(--color-text-dark)]">- ${testimonial.name}</p>
+                            <p class="text-sm text-[var(--color-text-light)]">${testimonial.specialty}</p>
+                        </div>
+                    `;
+                    testimonialContainer.appendChild(slide);
+                });
+
+                // Ajustar el ancho del contenedor para el scroll infinito
+                testimonialContainer.style.width = `${totalTestimonials * 2 * 400}px`;
+
+                // --- New Team Section Logic ---
+                const doctorPhotos = document.querySelectorAll('.doctor-photo-item');
+                const doctorDetails = document.querySelectorAll('.doctor-details-content');
+
+                doctorPhotos.forEach(photo => {
+                    photo.addEventListener('click', (event) => {
+                        const activePhoto = document.querySelector('.doctor-photo-item.active');
+                        const activeDetails = document.querySelector('.doctor-details-content.active');
+                        const doctorId = event.currentTarget.getAttribute('data-doctor');
+                        const newDetails = document.getElementById(doctorId + '-details');
+
+                        if (activeDetails === newDetails) return;
+
+                        // Remover la clase 'active' de la foto actual y añadirla a la clicada
+                        doctorPhotos.forEach(p => p.classList.remove('active'));
+                        photo.classList.add('active');
+
+                        // Desactivar el panel de detalles actual
+                        activeDetails.classList.remove('active');
+                        activeDetails.classList.add('transitioning-out');
+
+                        // Esperar a que termine la transición de salida
+                        activeDetails.addEventListener('transitionend', function handler() {
+                            activeDetails.style.display = 'none';
+                            activeDetails.classList.remove('transitioning-out');
+
+                            // Mostrar el nuevo panel
+                            newDetails.style.display = 'block';
+                            
+                            // Pequeño retraso para una animación de entrada fluida
+                            setTimeout(() => {
+                            newDetails.classList.add('active'); 
+                            }, 10);
+                            
+                            activeDetails.removeEventListener('transitionend', handler);
+                        });
+                    });
+                });
+
+                // Ocultar todos los paneles de detalles excepto el inicial en la carga
+                doctorDetails.forEach(details => {
+                    if (!details.classList.contains('active')) {
+                        details.style.display = 'none';
+                    }
+                });
+                
+
+                // Set a default active doctor on load
+                document.querySelector('.doctor-photo-item.active').click();
+
+
+                // --- Update Footer Year ---
+                document.getElementById('current-year').textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
+    </html>
